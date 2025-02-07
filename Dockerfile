@@ -6,26 +6,23 @@ ENV LANGUAGE=${LOCALE}
 ENV LC_ALL=${LOCALE}
 ENV LANG=${LOCALE}
 
-USER 0
+USER root
 
-RUN apt-get -y update && apt-get install -y --no-install-recommends locales netcat-openbsd \
+# Actualiza las dependencias y establece las configuraciones regionales
+RUN apt-get update && apt-get install -y --no-install-recommends locales netcat-openbsd \
     && locale-gen ${LOCALE}
 
-
-# Crear directorio de módulos y asignar permisos correctos
-RUN mkdir -p /mnt/extra-addons && chown -R odoo:odoo /mnt/extra-addons
-
-# Copiar módulos personalizados al contenedor
-COPY --chown=odoo:odoo ./custom-modules /mnt/extra-addons
-
-# Agregar la ruta de addons personalizados
-ENV ODOO_EXTRA_ADDONS="/mnt/extra-addons"
-
+# Establece el directorio de trabajo
 WORKDIR /app
 
+# Copia el script de entrada (entrypoint)
 COPY --chmod=755 entrypoint.sh ./
 
+# Copia los módulos personalizados
+COPY ./custom-modules /mnt/extra-addons
+
+# Establece el entrypoint
 ENTRYPOINT ["/bin/sh"]
 
+# Ejecuta el script de entrada
 CMD ["entrypoint.sh"]
-
