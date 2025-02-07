@@ -15,6 +15,8 @@ WORKDIR /app
 
 COPY --chmod=755 entrypoint.sh ./
 
+COPY ./custom-modules /mnt/extra-addons
+
 ENTRYPOINT ["/bin/sh"]
 
 CMD ["entrypoint.sh"]
