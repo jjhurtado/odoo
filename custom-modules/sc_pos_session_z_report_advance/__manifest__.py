@@ -1,0 +1,35 @@
+{
+    "name": "POS Session Report Advance | POS Session Z Report | POS Z Report |  POS Session Report from front and Backend in Odoo POS | POS Cash register Z-Report in Odoo",
+    "description": """Using this module you can print POS Z Session Report from front and Backend in odoo POS""",
+    'summary': 'Using this module you can print POS Z Session Report from front and Backend in odoo POS.',
+    'category': 'Point of Sale',    
+    'version': '17.0.3.2.1',
+    'author': 'Dotsprime System',
+    'sequence': 1,
+    'email': 'dotsprime@gmail.com',
+    'support': 'sales@dotsprime.com',
+    "website":'https://dotsprime.com/',
+    'price': 8,
+    "currency": "EUR",
+    "license": 'AGPL-3',
+    "depends": [
+        "base",
+        "point_of_sale",
+    ],
+    "data": [
+        "report/report_pos_session.xml",
+        "views/pos_session_view.xml",
+    ],
+    'assets': {
+        'point_of_sale._assets_pos': [
+            'sc_pos_session_z_report_advance/static/src/js/**/*',
+            'sc_pos_session_z_report_advance/static/src/xml/**/*',
+        ],
+    },
+    'demo': [],
+    'images': ['static/description/main_screenshot.jpg'],  
+    "live_test_url" : "https://youtu.be/LTXn34y0s00",       
+    'installable': True,
+    'auto_install': False,
+    'application': True,
+}
